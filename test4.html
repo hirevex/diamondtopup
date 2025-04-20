@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Free Fire Diamond Top-Up</title>
+</head>
+<body>
+
+  <header>
+    <h1>Free Fire Diamond Top-Up</h1>
+  </header>
+
+  <main>
+    <section id="store">
+      <h2>Available Top-Ups</h2>
+      <div id="items">
+        <div>
+          <input type="checkbox" id="item1" data-name="25 Diamonds" data-price="25">
+          <label for="item1">25 Diamonds - 25 taka</label>
+        </div>
+        <div>
+          <input type="checkbox" id="item2" data-name="50 Diamonds" data-price="40">
+          <label for="item2">50 Diamonds - 40 taka</label>
+        </div>
+        <div>
+          <input type="checkbox" id="item3" data-name="115 Diamonds" data-price="80">
+          <label for="item3">115 Diamonds - 80 taka</label>
+        </div>
+        <!-- Add the rest of the 28 items here following the same pattern -->
+        <div>
+          <input type="checkbox" id="item28" data-name="Evo access 30 days" data-price="335">
+          <label for="item28">Evo access 30 days - 335 taka</label>
+        </div>
+      </div>
+    </section>
+
+    <section id="checkout">
+      <h2>Checkout</h2>
+      <form id="checkoutForm" action="https://formspree.io/f/yourformid" method="POST">
+        <label for="playerId">Player ID:</label>
+        <input type="text" name="Player ID" id="playerId" required><br>
+
+        <label for="bkashNumber">Your bKash Number:</label>
+        <input type="text" name="bkashNumber" id="bkashNumber" required><br>
+
+        <label for="trxid">Transaction ID:</label>
+        <input type="text" name="trxid" id="trxid" required><br>
+
+        <input type="hidden" name="orderDetails" id="orderDetails">
+        <button type="submit" onclick="prepareOrder()">Confirm Payment</button>
+
+        <p>Send payment to: <strong>01650157474</strong> (bKash Personal)</p>
+      </form>
+    </section>
+  </main>
+
+  <script>
+    function prepareOrder() {
+      const checkboxes = document.querySelectorAll('#items input[type="checkbox"]');
+      const selected = [];
+      checkboxes.forEach(cb => {
+        if (cb.checked) {
+          selected.push(cb.getAttribute('data-name') + ' - ' + cb.getAttribute('data-price') + ' taka');
+        }
+      });
+      document.getElementById('orderDetails').value = selected.join(', ');
+    }
+  </script>
+
+</body>
+</html>
